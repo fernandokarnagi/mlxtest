@@ -1,5 +1,17 @@
 #!/bin/bash
 
+cd /opt/mlx
+
+# Check if venv exists, create if not
+if [ ! -d "venv" ]; then
+    echo "Creating virtual environment..."
+    python3 -m venv venv
+    echo "Virtual environment created."
+fi
+
+source venv/bin/activate
+pip install -r requirements.txt
+
 # Step 1: Download a small base model (Qwen2.5-0.5B is great for testing)
 python -c "
 from mlx_lm import load
