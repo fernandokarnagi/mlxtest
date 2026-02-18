@@ -30,24 +30,16 @@ with open("data/train.jsonl", "w") as f:
     for ex in training_examples:
         # MLX expects this format for fine-tuning
         record = {
-            "text": f"<|user|>
-{ex['prompt']}
-<|assistant|>
-{ex['completion']}"
+            "text": "<|user|>\n" + ex['prompt'] + "\n<|assistant|>\n" + ex['completion']
         }
-        f.write(json.dumps(record) + "
-")
+        f.write(json.dumps(record) + "\n")
 
 # Write validation data (subset)
 with open("data/valid.jsonl", "w") as f:
     for ex in training_examples[:2]:
         record = {
-            "text": f"<|user|>
-{ex['prompt']}
-<|assistant|>
-{ex['completion']}"
+            "text": "<|user|>\n" + ex['prompt'] + "\n<|assistant|>\n" + ex['completion']
         }
-        f.write(json.dumps(record) + "
-")
+        f.write(json.dumps(record) + "\n")
 
 print("✅ Data prepared successfully")
